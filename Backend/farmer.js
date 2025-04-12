@@ -13,8 +13,12 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
-
-
+const userdata = require("./models/User")
+const logindata = require("./models/Login")
+const contact = require("./models/contact")
+const seedselldata = require("./models/Seedselldata")
+const cropselldata = require("./models/Cropselldata")
+const vegetableselldata = require("./models/Vegetableselldata")
 app.post("/userdata", upload.single("file"), async (req, res) => {
     console.log(req.body)
     const UserDetails = await userdata.create({

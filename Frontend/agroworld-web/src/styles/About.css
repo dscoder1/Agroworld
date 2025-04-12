@@ -1,0 +1,31 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.aboutSection{
+    margin-top: 30px;
+    padding: 20px;
+    margin: 20px 10px 10px 10px;
+    border-radius: 5px;
+    
+}
+.aboutSection li{
+    font-size: 20px;
+    margin: 10px 0px 10px 0px;
+    font-weight: 400;
+}
+.aboutSection h4{
+    color: darkgreen;
+    text-decoration: underline;
+}
+.abouthead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+margin: 10px 0px 10px 0px;
+}
+.abouthead p{
+    font-size: 30px;
+    color: green;
+}
