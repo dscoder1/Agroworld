@@ -1,0 +1,24 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.rightSignup form{
+    height: 450px;
+}
+#photoSignup{
+    color: black;
+    border: none;
+}
+#specialform input{
+    width: 500px;
+}
+#specialform #prddesc{
+    height: 200px;
+font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 500px;
+    resize: none;
+    border: 1px solid greenyellow;
+}

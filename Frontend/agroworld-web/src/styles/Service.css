@@ -1,0 +1,18 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.downservice{
+    margin-top: 30px;
+}
+.servicehead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px 10px 0px;
+}
+.servicehead p{
+    font-size: 30px;
+    color: green;
+}
