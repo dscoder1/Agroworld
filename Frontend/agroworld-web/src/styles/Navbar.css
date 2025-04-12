@@ -1,0 +1,60 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.navbarbox .middle ul{
+display: flex;
+align-items: center;
+
+}
+.navbarbox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    box-shadow: 0px 0px 10px greenyellow;
+    height: 60px;
+    background-color: #98fb98;
+}
+.navbarbox .middle ul a{
+text-decoration: none;     
+list-style-type: none;
+margin: 0px 20px 0px 20px;
+color: black;
+font-size: 18px;
+}
+#profilephoto{
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.navbarbox .right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbarbox .left span{
+    font-size: 30px;
+    margin-left: 10px;
+    color: green;
+    font-weight: 500;
+    font-family:  cursive;
+}
+.navbarbox .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 30px;
+}
+#weblogo{
+    height: 40px;
+    width: 40px;
+}
+#world{
+    color: white;
+}
+
+

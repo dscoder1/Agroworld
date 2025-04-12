@@ -1,0 +1,141 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+#plantbackimage {
+    height: 400px;
+    width: 340px;
+}
+
+.mainSignup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.upperSignup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Use min-height for flexibility */
+    background-image: url("https://wallpapercave.com/wp/wp2916561.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensure the image covers the entire area */
+    background-position: center; /* Center the background image */
+}
+
+.rightSignup form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#signuphead {
+    font-size: 30px;
+    color: white;
+    margin-bottom: 20px; /* Added margin for spacing */
+}
+
+.rightSignup form input {
+    margin: 10px;
+    height: 45px;
+    width: 400px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid greenyellow;
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.rightSignup form input:focus {
+    border-color: green; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.rightSignup form input[type="submit"] {
+    background-color: green;
+    color: white;
+    font-size: 25px;
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.rightSignup form input[type="submit"]:hover {
+    background-color: darkgreen; /* Darker green on hover */
+}
+
+#error {
+    color: red; /* Error message color */
+    margin: 10px 0; /* Spacing around error message */
+}
+
+#accountcreatehead {
+    font-size: 20px;
+    color: white;
+    text-decoration: none; /* Remove underline */
+}
+
+#accountcreatehead:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .mainSignup {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+    }
+
+    .rightSignup form input {
+        width: 90%; /* Make input fields take up more width */
+    }
+
+    #signuphead {
+        font-size: 24px; /* Smaller font size for the heading */
+    }
+
+    #btnSignup {
+        font-size: 20px; /* Smaller button font size */
+    }
+
+    #accountcreatehead {
+        font-size: 18px; /* Smaller font size for the account creation link */
+    }
+}
+
+@media (max-width: 480px) {
+    #signuphead {
+        font-size: 20px; /* Further reduce heading size */
+    }
+
+    .rightSignup form input {
+        height: 40px; /* Smaller input height */
+        font-size: 18px; /* Smaller font size for inputs */
+    }
+
+    #btnSignup {
+        font-size: 18px; /* Smaller button font size */
+    }
+
+    #accountcreatehead {
+        font-size: 16px; /* Smaller font size for the account creation link */
+    }
+}
+#photoSignup{
+    color: white;
+    border: none;
+}
+#photoLabelSignup{
+    color: white;
+    font-size: 20px;
+}

@@ -1,0 +1,307 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.mainhome {
+    height: 100vh;
+    background-image: url("https://i.pinimg.com/originals/5e/2f/52/5e2f524c135f9db373e99af4a9cf6763.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Ensure the image covers the entire area */
+    background-position: center;
+    /* Center the background image */
+    margin-top: 10px;
+}
+
+
+
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.mainhome {
+    height: 100vh;
+    background-image: url("https://th.bing.com/th/id/R.af047c8bea180dd9dee9954beb99f6e1?rik=EWb%2b7CDslgvUjg&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fwp1886345.jpg&ehk=qkRIgdS9kNq2%2fwUhtIpZgZh8UZfNaYW%2bYbnrwF8Smhc%3d&risl=&pid=ImgRaw&r=0");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Ensure the image covers the entire area */
+    background-position: center;
+    /* Center the background image */
+    display: flex;
+    /* Use flexbox for layout */
+    justify-content: space-between;
+    /* Space between left and right sections */
+    align-items: center;
+    /* Center items vertically */
+    position: relative;
+    /* Position relative for overlay */
+
+}
+
+.overlay {
+    position: absolute;
+    /* Position overlay absolutely */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Semi-transparent black overlay */
+    z-index: 1;
+    /* Ensure overlay is above the background */
+}
+
+.lefthome {
+    flex: 1;
+    /* Take up 1 part of the available space */
+    padding: 20px;
+    color: white;
+    /* Text color for visibility */
+    z-index: 2;
+    /* Ensure text is above the overlay */
+}
+
+.righthome {
+    flex: 1;
+    /* Take up 1 part of the available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    /* Ensure image is above the overlay */
+}
+
+.righthome img {
+    max-width: 100%;
+    /* Make the image responsive */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+.explore-button {
+    padding: 10px 20px;
+    background-color: green;
+    /* Button color */
+    color: white;
+    /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    height: 40px;
+    width: 300px;
+}
+
+.animated-text span {
+    color: green;
+}
+
+.explore-button:hover {
+    background-color: darkgreen;
+    /* Darker button color on hover */
+}
+
+/* Animation Styles */
+.animated-text {
+    opacity: 0;
+    /* Start invisible */
+    animation: fadeIn 4s forwards;
+    /* Fade in animation */
+    margin: 20px 0;
+    /* Spacing between text elements */
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        /* Start from invisible */
+        transform: translateY(20px);
+        /* Start slightly lower */
+    }
+
+    to {
+        opacity: 1;
+        /* End fully visible */
+        transform: translateY(0);
+        /* End at original position */
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mainhome {
+        flex-direction: column;
+        /* Stack sections vertically on smaller screens */
+        align-items: center;
+        /* Center items */
+    }
+
+    .lefthome,
+    .righthome {
+        width: 100%;
+        /* Full width for each section */
+        text-align: center;
+        /* Center text for smaller screens */
+    }
+
+    .righthome img {
+        max-width: 80%;
+        /* Adjust image size for smaller screens */
+    }
+}
+
+.downhome {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.downhome .lefthomedown img {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+.downhome .middlehomedown img {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+
+}
+
+.downhome .righthomedown img {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+
+}
+
+.downhome .lefthomedown {
+    padding: 10px;
+
+    box-shadow: 0px 0px 10px black;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+.downhome .middlehomedown {
+    flex-direction: column;
+
+    box-shadow: 0px 0px 10px black;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    border-radius: 5px;
+    padding: 10px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.downhome .righthomedown {
+
+    box-shadow: 0px 0px 10px black;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.paraHeadhome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paraHeadhome p {
+    font-size: 40px;
+    color: green;
+    margin: 10px 0px 10px 0px;
+}
+
+.downhome .lefthomedown button {
+    height: 40px;
+    width: 200px;
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    font-size: 20px;
+    border: none;
+
+}
+
+.downhome .middlehomedown button {
+    height: 40px;
+    width: 200px;
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    font-size: 20px;
+    border: none;
+
+
+}
+
+.downhome .righthomedown button {
+    height: 40px;
+    width: 200px;
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    font-size: 20px;
+    border: none;
+
+}
+
+.downhome .righthomedown button:hover {
+    background-color: darkgreen;
+    margin-top: 5px;
+
+}
+
+.downhome .lefthomedown button:hover {
+    background-color: darkgreen;
+    margin-top: 5px;
+
+}
+
+.downhome .middlehomedown button:hover {
+    background-color: darkgreen;
+    margin-top: 5px;
+
+}
+
+.downhome .middlehomedown h4 {
+    color: darkgreen;
+    margin-top: 5px;
+
+}
+
+.downhome .righthomedown h4 {
+    color: darkgreen;
+    margin-top: 5px;
+
+}
+
+.downhome .lefthomedown h4 {
+    color: darkgreen;
+    margin-top: 5px;
+}
