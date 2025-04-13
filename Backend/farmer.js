@@ -620,6 +620,308 @@ app.get("/allfarmingorderadmin", async (req, res) => {
 })
 
 
+
+
+app.get("/allocatevegetableorder/:id", async (req, res) => {
+    const data = await vegetableorder.find({ _id: req.params.id })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allocateproductorder/:id", async (req, res) => {
+    const data = await prdorder.find({ _id: req.params.id })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allocatecroporder/:id", async (req, res) => {
+    const data = await croporder.find({ _id: req.params.id })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allocateseedorder/:id", async (req, res) => {
+    const data = await seedorder.find({ _id: req.params.id })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allocatefarmingorder/:id", async (req, res) => {
+    const data = await farmingorder.find({ _id: req.params.id })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.post("/allocatevegetableorder", async (req, res) => {
+    var price = parseInt(req.body.vegetableprice)
+    var kg = parseInt(req.body.vegetablekg)
+    var totalprice = price * kg
+    var totalpriceStr = String(totalprice)
+    const data = await allocatevegetable.create({
+        LoginUser: req.body.logindata,
+        Vegetablename: req.body.vegetablename,
+        OrderedPhone: req.body.vegetablebuyernumber,
+        TotalKg: req.body.vegetablekg,
+        Price: totalpriceStr,
+        SellerPhone: req.body.vegetablesellernumber,
+        Location: req.body.locationorder,
+        IsDone: "Yes",
+        AllocaterNumber: req.body.vegetableallocaternumber,
+        DeliveryDone:"No"
+    })
+    if (data) {
+        const deleteddata = await vegetableorder.findOneAndDelete({ _id: req.body.iddata })
+        return res.status(200).send("Order Allocated")
+    }
+    else {
+        return res.status(200).send("Error In Order Allocation")
+
+    }
+})
+
+app.post("/allocatecroporder", async (req, res) => {
+    var price = parseInt(req.body.vegetableprice)
+    var kg = parseInt(req.body.vegetablekg)
+    var totalprice = price * kg
+    var totalpriceStr = String(totalprice)
+    const data = await allocatecrop.create({
+        LoginUser: req.body.logindata,
+        Cropname: req.body.vegetablename,
+        OrderedPhone: req.body.vegetablebuyernumber,
+        TotalKg: req.body.vegetablekg,
+        Price: totalpriceStr,
+        SellerPhone: req.body.vegetablesellernumber,
+        Location: req.body.locationorder,
+        IsDone: "Yes",
+        AllocaterNumber: req.body.vegetableallocaternumber,
+        DeliveryDone:"No"
+    })
+    if (data) {
+        const deleteddata = await croporder.findOneAndDelete({ _id: req.body.iddata })
+        return res.status(200).send("Order Allocated")
+    }
+    else {
+        return res.status(200).send("Error In Order Allocation")
+
+    }
+})
+
+
+
+app.post("/allocateseedorder", async (req, res) => {
+    var price = parseInt(req.body.vegetableprice)
+    var kg = parseInt(req.body.vegetablekg)
+    var totalprice = price * kg
+    var totalpriceStr = String(totalprice)
+    console.log(req.body)
+    const data = await allocateseed.create({
+        LoginUser: req.body.logindata,
+        Seedname: req.body.vegetablename,
+        OrderedPhone: req.body.vegetablebuyernumber,
+        TotalPackets: req.body.vegetablekg,
+        Price: totalpriceStr,
+        SellerPhone: req.body.vegetablesellernumber,
+        Location: req.body.locationorder,
+        IsDone: "Yes",
+        AllocaterNumber: req.body.vegetableallocaternumber,
+        DeliveryDone:"No"
+    })
+    if (data) {
+        const deleteddata = await seedorder.findOneAndDelete({ _id: req.body.iddata })
+        return res.status(200).send("Order Allocated")
+    }
+    else {
+        return res.status(200).send("Error In Order Allocation")
+
+    }
+})
+
+
+
+
+app.post("/allocatefarmingorder", async (req, res) => {
+    var price = parseInt(req.body.vegetableprice)
+    var kg = parseInt(req.body.vegetablekg)
+    var totalprice = price * kg
+    var totalpriceStr = String(totalprice)
+    const data = await allocatefarming.create({
+        LoginUser: req.body.logindata,
+        Productname: req.body.vegetablename,
+        OrderedPhone: req.body.vegetablebuyernumber,
+        TotalPackets: req.body.vegetablekg,
+        Price: totalpriceStr,
+        Location: req.body.locationorder,
+        IsDone: "Yes",
+        AllocaterNumber: req.body.vegetableallocaternumber,
+        DeliveryDone:"No"
+    })
+    if (data) {
+        const deleteddata = await farmingorder.findOneAndDelete({ _id: req.body.iddata })
+        return res.status(200).send("Order Allocated")
+    }
+    else {
+        return res.status(200).send("Error In Order Allocation")
+
+    }
+})
+
+
+
+app.post("/allocateproductorder", async (req, res) => {
+    var price = parseInt(req.body.vegetableprice)
+    var kg = parseInt(req.body.vegetablekg)
+    var totalprice = price * kg
+    var totalpriceStr = String(totalprice)
+    const data = await allocateprd.create({
+        LoginUser: req.body.logindata,
+        Productname: req.body.vegetablename,
+        OrderedPhone: req.body.vegetablebuyernumber,
+        TotalKg: req.body.vegetablekg,
+        Price: totalpriceStr,
+        Desc: req.body.descdata,
+        Location: req.body.locationorder,
+        IsDone: "Yes",
+        AllocaterNumber: req.body.vegetableallocaternumber,
+        DeliveryDone:"No"
+    })
+    if (data) {
+        const deleteddata = await prdorder.findOneAndDelete({ _id: req.body.iddata })
+        return res.status(200).send("Order Allocated")
+    }
+    else {
+        return res.status(200).send("Error In Order Allocation")
+
+    }
+})
+
+app.get("/allallocatedseedorder", async (req, res) => {
+    const data = await allocateseed.find({})
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+
+app.get("/allallocatedcroporder", async (req, res) => {
+    const data = await allocatecrop.find({})
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedvegetableorder", async (req, res) => {
+    const data = await allocatevegetable.find({})
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedproductorder", async (req, res) => {
+    const data = await allocateprd.find({})
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedotherorder", async (req, res) => {
+    const data = await allocatefarming.find({})
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+
+
+
+
+
+app.get("/allallocatedseedorderuser", async (req, res) => {
+    const data1 = await logindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocateseed.find({ LoginUser: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+
+app.get("/allallocatedcroporderuser", async (req, res) => {
+    const data1 = await logindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocatecrop.find({ LoginUser: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedvegetableorderuser", async (req, res) => {
+    const data1 = await logindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocatevegetable.find({ LoginUser: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedproductorderuser", async (req, res) => {
+    const data1 = await logindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocateprd.find({ LoginUser: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedotherorderuser", async (req, res) => {
+    const data1 = await logindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocatefarming.find({ LoginUser: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+
+
+
+
+
+
+app.get("/allallocatedseedorderservice", async (req, res) => {
+    const data1 = await servicelogindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocateseed.find({ AllocaterNumber: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+
+app.get("/allallocatedcroporderservice", async (req, res) => {
+    const data1 = await servicelogindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocatecrop.find({ AllocaterNumber: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedvegetableorderservice", async (req, res) => {
+    const data1 = await servicelogindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocatevegetable.find({ AllocaterNumber: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedproductorderservice", async (req, res) => {
+    const data1 = await servicelogindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocateprd.find({ AllocaterNumber: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+app.get("/allallocatedotherorderservice", async (req, res) => {
+    const data1 = await servicelogindata.find({})
+    console.log(data1[0].Phone)
+    const data = await allocatefarming.find({ AllocaterNumber: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
+
+
+
+
 app.listen(process.env.PORT, () => {
     console.log("Server Is Running On Port :", process.env.PORT)
 })
