@@ -8,11 +8,7 @@ const path = require("path")
 const multer = require("multer")
 const app = express()
 const cors = require("cors")
-dotenv.config()
-app.use(cors())
-app.use(express.json())
-app.use(bodyParser.json())
-app.use(express.urlencoded({ extended: false }))
+const nodemailer = require("nodemailer")
 const userdata = require("./models/User")
 const logindata = require("./models/Login")
 const contact = require("./models/contact")
@@ -27,6 +23,24 @@ const prdorder = require("./models/productorder")
 const dboy = require("./models/Dboy")
 const farming = require("./models/farmingmaterial")
 const farmingorder = require("./models/farmingorder")
+const allocatevegetable = require("./models/Allocatevegetable")
+const allocateseed = require("./models/AllocateSeed")
+const allocatecrop = require("./models/Allocatecrop")
+const allocateprd = require("./models/Allocateproduct")
+const allocatefarming = require("./models/Allocatefarming")
+const serviceuserdata=require("./models/serviceuser")
+const servicelogindata=require("./models/servicelogin")
+const completeseed=require("./models/Completeseed")
+const completecrop=require("./models/Completecrop")
+const completevegetable=require("./models/Completevegetable")
+const completeprd=require("./models/Completeproduct")
+const completefarming=require("./models/Completefarming")
+dotenv.config()
+app.use(cors())
+app.use(express.json())
+app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false }))
+
 
 app.use("/files", express.static("files"));
 
@@ -57,7 +71,6 @@ app.post("/userdata", upload.single("file"), async (req, res) => {
 })
 
 
-
 app.post("/dboydata", upload.single("file"), async (req, res) => {
     console.log(req.body)
     const DboyDetails = await dboy.create({
@@ -70,7 +83,6 @@ app.post("/dboydata", upload.single("file"), async (req, res) => {
         return res.status(200).send("Account Created")
     }
 })
-
 
 app.post("/login", async (req, res) => {
     console.log(req.body)
@@ -88,14 +100,55 @@ app.post("/login", async (req, res) => {
         return res.status(200).send("Account Not Matched")
     }
 })
+
+
+
+app.post("/serviceuserdata", upload.single("file"), async (req, res) => {
+    console.log(req.body)
+    const UserDetails = await dboy.create({
+        Fullname: req.body.fullnamedata,
+        Phone: req.body.phonedata,
+        Password: req.body.passworddata,
+        Photo: req.file.filename
+    })
+    if (UserDetails) {
+        return res.status(200).send("Account Created")
+    }
+})
+
+app.get("/loginserviceuser",async(req,res)=>{
+    const data=await servicelogindata.find({})
+    if(data){
+        console.log(data[0].Phone)
+        const newData=await dboy.findOne({Phone:data[0].Phone})
+        return res.status(200).send(newData)
+    }
+})
+
+app.post("/servicelogin", async (req, res) => {
+    console.log(req.body)
+    const data = await dboy.findOne({ Phone: req.body.phonedata, Password: req.body.passworddata })
+    console.log(data)
+    if (data) {
+        await servicelogindata.deleteOne({})
+        const login = await servicelogindata.create({
+            Phone: req.body.phonedata,
+            Password: req.body.passworddata
+        })
+        return res.status(200).send("Account Matched")
+    }
+    else {
+        return res.status(200).send("Account Not Matched")
+    }
+})
+
+
 app.get("/loginuser", async (req, res) => {
     const data = await logindata.find({})
     if (data) {
         return res.status(200).send(data)
     }
 })
-
-
 app.post("/contactForm", async (req, res) => {
     console.log(req.body)
     const data = await contact.create({
@@ -619,9 +672,6 @@ app.get("/allfarmingorderadmin", async (req, res) => {
     }
 })
 
-
-
-
 app.get("/allocatevegetableorder/:id", async (req, res) => {
     const data = await vegetableorder.find({ _id: req.params.id })
     if (data) {
@@ -652,6 +702,7 @@ app.get("/allocatefarmingorder/:id", async (req, res) => {
         return res.status(200).send(data)
     }
 })
+
 app.post("/allocatevegetableorder", async (req, res) => {
     var price = parseInt(req.body.vegetableprice)
     var kg = parseInt(req.body.vegetablekg)
@@ -922,6 +973,98 @@ app.get("/allallocatedotherorderservice", async (req, res) => {
 
 
 
+
+app.post("/updateallocatedseedorderservice", async (req, res) => {
+     console.log(req.body)
+     const data=await allocateseed.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Yes"})
+     
+})
+
+app.post("/updateallocatedcroporderservice", async (req, res) => {
+    
+    console.log(req.body)
+     const data=await allocatecrop.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Yes"})
+})
+app.post("/updateallocatedvegetableorderservice", async (req, res) => {
+    
+    console.log(req.body)
+     const data=await allocatevegetable.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Yes"})
+})
+app.post("/updateallocatedproductorderservice", async (req, res) => {
+     
+    console.log(req.body)
+    const data=await allocateprd.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Yes"})
+})
+app.post("/updateallocatedotherorderservice", async (req, res) => {
+    
+    console.log(req.body)
+     const data=await allocatefarming.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Yes"})
+})
+
+
+
+app.post("/reachedallocatedseedorderuser", async (req, res) => {
+    console.log(req.body)
+    const data=await allocateseed.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Reached"})
+})
+
+app.post("/notreachedallocatedseedorderuser", async (req, res) => {
+    console.log(req.body)
+    const data=await allocateseed.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"No"})
+})
+
+app.post("/reachedallocatedcroporderuser", async (req, res) => {
+   
+    console.log(req.body)
+    const data=await allocatecrop.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Reached"})
+})
+
+
+app.post("/notreachedallocatedcroporderuser", async (req, res) => {
+   
+    console.log(req.body)
+    const data=await allocatecrop.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"No"})
+})
+
+app.post("/reachedallocatedvegetableorderuser", async (req, res) => {
+   
+    console.log(req.body)
+    const data=await allocatevegetable.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Reached"})
+})
+app.post("/notreachedallocatedvegetableorderuser", async (req, res) => {
+   
+    console.log(req.body)
+    const data=await allocatevegetable.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"No"})
+})
+app.post("/reachedallocatedproductorderuser", async (req, res) => {
+    
+    console.log(req.body)
+    const data=await allocateprd.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Reached"})
+})
+app.post("/notreachedallocatedproductorderuser", async (req, res) => {
+    
+    console.log(req.body)
+    const data=await allocateprd.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"No"})
+})
+app.post("/reachedallocatedotherorderuser", async (req, res) => {
+   
+    console.log(req.body)
+    const data=await allocatefarming.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"Reached"})
+})
+app.post("/notreachedallocatedotherorderuser", async (req, res) => {
+   
+    console.log(req.body)
+    const data=await allocatefarming.findOneAndUpdate({_id:req.body.id},{DeliveryDone:"No"})
+})
+
+app.get("/loginData", async (req, res) => {
+    const data1 = await logindata.find({})
+    console.log(data1[0].Phone)
+    const data = await userdata.find({ Phone: data1[0].Phone })
+    if (data) {
+        return res.status(200).send(data)
+    }
+})
 app.listen(process.env.PORT, () => {
     console.log("Server Is Running On Port :", process.env.PORT)
 })
