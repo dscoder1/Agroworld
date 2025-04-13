@@ -34,8 +34,28 @@ The **Farmer's Marketplace** is a web application designed to empower farmers by
 - **Authentication**: JWT (JSON Web Tokens) for secure user sessions
 - **Deployment**: GitHub for version control and deployment
 
-## Installation
+## Setup Frontend
+1. Create React App:
+   npx create vite@latest agroworld-web
+2. Navigate to the frontend directory:
+   cd Frontend
+3. Install frontend dependencies:
+   npm install axios react-router-dom
+4. Start the React app
+   npm run dev
 
+## Setup Backend
+1. Navigate to the backend directory:
+   cd Backend
+2. Initialize a Node.js project:
+   npm init - y
+3. Install backend dependencies:
+   npm install express mongoose jsonwebtoken cors body-parser nodemon bcrypt dotenv multer
+4. Start the backend server:
+   nodemon farmer.js 
+
+## Git
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/farmers-marketplace.git
+   git clone https://github.com/dscoder1/agroworld.git
+   
